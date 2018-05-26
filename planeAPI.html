@@ -5,18 +5,21 @@
 </head>
 <body>
 
-    <button id="NYCLAX">NYC to LAX</button>
-    <button id="NYCSFO">NYC to SFO</button>
-    <button id="NYCLGB">NYC to LGB</button>
-    <button id="SFOSAN">SFO to SAN</button>
-    <button id="NYCSAN">NYC to SAN</button>
-    <button id="SFO">SFO ONE WAY</button>
+    <button id="YTODEN">YTO → DEN</button>
+    <button id="DENYTO">DEN → YTO</button>
+        <br><br>
+    <button id="YTOSFO">YTO → SFO</button> 
+    <button id="SFOYTO">SFO → YTO</button> 
+        <br><br>
+    <button id="YTORIO">YTO → RIO</button>
+    <button id="RIOYTO">RIO → YTO</button>
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
  
- $("#NYCLAX").on("click", function(){
-    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=NYC&destination=LAX"
+ $("#YTODEN").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=YTO&destination=den&one-way=true"
     console.log(queryURL);
      
     $.ajax({
@@ -26,8 +29,8 @@
   
 });
 
- $("#NYCSFO").on("click", function(){
-    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=NYC&destination=SFO"
+ $("#DENYTO").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=DEN&destination=YTO&one-way=true"
     console.log(queryURL);
      
     $.ajax({
@@ -37,8 +40,11 @@
   
 });
 
- $("#NYCLGB").on("click", function(){
-    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=NYC&destination=LGB"
+
+
+
+ $("#YTOSFO").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=YTO&destination=sfo&one-way=true"
     console.log(queryURL);
      
     $.ajax({
@@ -48,19 +54,8 @@
   
 });
 
- $("#SFOSAN").on("click", function(){
-    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=SFO&destination=SAN";
-    console.log(queryURL);    
-     
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-  
-});
-
-$("#NYCSAN").on("click", function(){
-    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=NYC&destination=SAN"
+$("#SFOYTO").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=SFO&destination=YTO&one-way=true"
     console.log(queryURL);
      
     $.ajax({
@@ -70,8 +65,11 @@ $("#NYCSAN").on("click", function(){
   
 });
 
-$("#SFO").on("click", function(){
-    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=SFO&one-way=true"
+
+
+
+ $("#YTORIO").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=YTO&destination=RIO&one-way=true"
     console.log(queryURL);
      
     $.ajax({
@@ -80,6 +78,19 @@ $("#SFO").on("click", function(){
     })
   
 });
+
+ $("#RIOYTO").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=RIO&destination=YTO&one-way=true"
+    console.log(queryURL);
+     
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+  
+});
+
+
 
 
 </script>    
