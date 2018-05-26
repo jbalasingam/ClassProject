@@ -1,3 +1,32 @@
-dropdown{
-    text-align: center;
+
+body, html {
+    height: 100%;
+    margin: 0;
+    background-image: url("../images/wintertor.webp");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
+.jumbotron {
+    background-color:transparent !important; 
+    text-align: center;
+    color: white;
+}
+
+.form-control{
+    color: black;
+}
+
+.btn-primary {
+    color: black;
+    background-color: white;
+    border-color: white;
+    margin: auto;
+}
+
