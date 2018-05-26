@@ -1,0 +1,88 @@
+<!DOCtype html>
+<html>
+<head>
+    <title>Airplane API</title>
+</head>
+<body>
+
+    <button id="NYCLAX">NYC to LAX</button>
+    <button id="NYCSFO">NYC to SFO</button>
+    <button id="NYCLGB">NYC to LGB</button>
+    <button id="SFOSAN">SFO to SAN</button>
+    <button id="NYCSAN">NYC to SAN</button>
+    <button id="SFO">SFO ONE WAY</button>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+ 
+ $("#NYCLAX").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=NYC&destination=LAX"
+    console.log(queryURL);
+     
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+  
+});
+
+ $("#NYCSFO").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=NYC&destination=SFO"
+    console.log(queryURL);
+     
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+  
+});
+
+ $("#NYCLGB").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=NYC&destination=LGB"
+    console.log(queryURL);
+     
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+  
+});
+
+ $("#SFOSAN").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=SFO&destination=SAN";
+    console.log(queryURL);    
+     
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+  
+});
+
+$("#NYCSAN").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=NYC&destination=SAN"
+    console.log(queryURL);
+     
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+  
+});
+
+$("#SFO").on("click", function(){
+    var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=SFO&one-way=true"
+    console.log(queryURL);
+     
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+  
+});
+
+
+</script>    
+
+</body>
+</html>
