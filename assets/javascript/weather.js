@@ -49,16 +49,19 @@ $(".submit").on("click", function() {
     precipTimeSeries = [];
     humidTimeSeries = [];
 
+
+
+    //Sunil's flight data goes here//
+
+
+
+    //end of Sunil's flight data//
     //make sure that the user selects a destion before passing on a value to city
     if (ID != "NULL"){
         $(".selectDestWarning").hide();
         var city = destinations[ID].city;
         var lattitude = destinations[ID].lattitude;
         var longitude = destinations[ID].longitude;
-
-        console.log(city);
-        console.log(lattitude);
-        console.log(longitude);
 
         var today = new Date('2017-08-27');
         var tomorrow = today.setDate(today.getDate() + 1)
@@ -74,41 +77,22 @@ $(".submit").on("click", function() {
 
             $.getJSON(proxy+"https://api.darksky.net/forecast/"+ APIKEY  + lattitude + "," + longitude + "," + tomorrow,function(snapshot){
                 // var currentTemp = json.main.temp - AbsZero;
-
                 tempTimeSeries.push(snapshot.currently.temperature);
                 precipTimeSeries.push(snapshot.currently.precipType);
                 humidTimeSeries.push(snapshot.currently.humidity);
-                
-
-                function Unix_timestamp(tomorrow)
-                        {
-                        var dt = new Date(tomorrow*1000);
-                        var hr = dt.getHours();
-                        var m = "0" + dt.getMinutes();
-                        var s = "0" + dt.getSeconds();
-                        return hr+ ':' + m.substr(-2) + ':' + s.substr(-2);  
-                        }
-
-            convert(tomorrow);
              });//end get json
 
+             convert(tomorrow);
+             InitChart();
         }
         
         console.log(tempTimeSeries);
         console.log(precipTimeSeries);
         console.log(humidTimeSeries);
         console.log(dateTimeSeries);
-        
-
-
     } else {
-
         $(".selectDestWarning").show();
-        
     }//end if statement checking for NULL
-
-    
-
 });//end on submit-on-click function
 
 //converting unix timestamp to date
@@ -131,3 +115,89 @@ function convert(snapshot){
     dateTimeSeries.push(convdataTime);
     
 }
+
+
+//creating a chart with d3.js for the weather data
+
+function InitChart() {
+
+  var barData = [{
+    'x': 1,
+    'y': 5
+  }, {
+    'x': 20,
+    'y': 20
+  }, {
+    'x': 40,
+    'y': 10
+  }, {
+    'x': 60,
+    'y': 40
+  }, {
+    'x': 80,
+    'y': 5
+  }, {
+    'x': 100,
+    'y': 60
+  }];
+
+  var vis = d3.select('#visualisation'),
+    WIDTH = 1000,
+    HEIGHT = 500,
+    MARGINS = {
+      top: 20,
+      right: 20,
+      bottom: 20,
+      left: 50
+    },
+    xRange = d3.scale.ordinal().rangeRoundBands([MARGINS.left, WIDTH - MARGINS.right], 0.1).domain(barData.map(function (d) {
+      return d.x;
+    })),
+
+
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,
+      d3.max(barData, function (d) {
+        return d.y;
+      })
+    ]),
+
+    xAxis = d3.svg.axis()
+      .scale(xRange)
+      .tickSize(5)
+      .tickSubdivide(true),
+
+    yAxis = d3.svg.axis()
+      .scale(yRange)
+      .tickSize(5)
+      .orient("left")
+      .tickSubdivide(true);
+
+
+  vis.append('svg:g')
+    .attr('class', 'x axis')
+    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+    .call(xAxis);
+
+  vis.append('svg:g')
+    .attr('class', 'y axis')
+    .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
+    .call(yAxis);
+
+  vis.selectAll('rect')
+    .data(barData)
+    .enter()
+    .append('rect')
+    .attr('x', function (d) {
+      return xRange(d.x);
+    })
+    .attr('y', function (d) {
+      return yRange(d.y);
+    })
+    .attr('width', xRange.rangeBand())
+    .attr('height', function (d) {
+      return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
+    })
+    .attr('fill', 'grey');
+
+}
+  //end of graphing weather data
