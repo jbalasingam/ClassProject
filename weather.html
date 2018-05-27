@@ -13,7 +13,6 @@
             var endDate = parseInt((new Date('2012-12-10').getTime() / 1000).toFixed(0));
             var lattitude = 39.7392;
             var longitude = -104.9903;
-
             function gettingJSON(){
                 document.write("jquery loaded");
                 city = cityName;
@@ -21,22 +20,14 @@
                     
                 var AbsZero = 273;
                 var proxy = 'https://cors-anywhere.herokuapp.com/';
-
                 APIKEY = "8a93b3dd0526e580ced4a3199d152e6d/"
                 $.getJSON(proxy+"https://api.darksky.net/forecast/"+ APIKEY  + lattitude + "," + longitude + "," + startDate,function(snapshot){
                     // var currentTemp = json.main.temp - AbsZero;
-
-
                     console.log(snapshot.hourly.summary);
-
                     
-
                 });
             }
-
             
-
-
     </script>
 
 
