@@ -27,10 +27,11 @@ var YTORIO  = {
     lattitude : -22.9068,
     longitude : -43.1729,
 }   
-
+var dateTimeSeries = [];
 var tempTimeSeries = [];
 var precipTimeSeries = [];
 var humidTimeSeries = [];
+
 
 var destinations = [YTODEN, YTOSFO, YTORIO];   
 
@@ -73,10 +74,22 @@ $(".submit").on("click", function() {
 
             $.getJSON(proxy+"https://api.darksky.net/forecast/"+ APIKEY  + lattitude + "," + longitude + "," + tomorrow,function(snapshot){
                 // var currentTemp = json.main.temp - AbsZero;
-                console.log(snapshot);
+
                 tempTimeSeries.push(snapshot.currently.temperature);
                 precipTimeSeries.push(snapshot.currently.precipType);
                 humidTimeSeries.push(snapshot.currently.humidity);
+                
+
+                function Unix_timestamp(tomorrow)
+                        {
+                        var dt = new Date(tomorrow*1000);
+                        var hr = dt.getHours();
+                        var m = "0" + dt.getMinutes();
+                        var s = "0" + dt.getSeconds();
+                        return hr+ ':' + m.substr(-2) + ':' + s.substr(-2);  
+                        }
+
+            convert(tomorrow);
              });//end get json
 
         }
@@ -84,6 +97,8 @@ $(".submit").on("click", function() {
         console.log(tempTimeSeries);
         console.log(precipTimeSeries);
         console.log(humidTimeSeries);
+        console.log(dateTimeSeries);
+        
 
 
     } else {
@@ -95,3 +110,24 @@ $(".submit").on("click", function() {
     
 
 });//end on submit-on-click function
+
+//converting unix timestamp to date
+function convert(snapshot){
+    // Unixtimestamp
+    var unixtimestamp = snapshot;
+    // Months array
+    var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    // Convert timestamp to milliseconds
+    var date = new Date(unixtimestamp*1000);
+    // Year
+    var year = date.getFullYear();
+    // Month
+    var month = months_arr[date.getMonth()];
+    // Day
+    var day = date.getDate();
+    // Display date time in MM-dd-yyyy h:m:s format
+    var convdataTime = day+'-'+month+'-'+year;
+    
+    dateTimeSeries.push(convdataTime);
+    
+}
