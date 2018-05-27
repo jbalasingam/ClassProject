@@ -86,15 +86,6 @@ $(".submit").on("click", function() {
         console.log(humidTimeSeries);
 
 
-
-
-
-        // $.getJSON(proxy+"https://api.darksky.net/forecast/"+ APIKEY  + lattitude + "," + longitude + "," + startDate,function(snapshot){
-        //         // var currentTemp = json.main.temp - AbsZero;
-        //         console.log(snapshot);
-                
-        // });//end get json
-
     } else {
 
         $(".selectDestWarning").show();
