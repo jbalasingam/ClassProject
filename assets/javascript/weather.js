@@ -1,3 +1,19 @@
+//firebase login authentication added by kyle 
+var config = {
+  apiKey: "AIzaSyDs0SsPna9FyA2v3VYvR4pBToiOzEStXyw",
+  authDomain: "class-project-24004.firebaseapp.com",
+  databaseURL: "https://class-project-24004.firebaseio.com",
+  projectId: "class-project-24004",
+  storageBucket: "class-project-24004.appspot.com",
+  messagingSenderId: "560655777785"
+};
+firebase.initializeApp(config);
+
+
+
+
+
+
 //this script returns the weather data for the cities selected
 $(".selectDestWarning").hide();
 var AbsZero = 273;
