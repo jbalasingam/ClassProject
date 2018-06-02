@@ -2,10 +2,8 @@ body, html {
     /* height: 100%; */
     margin: 0;
     background-image: url("../images/695114.jpg");
-
     /* Full height */
     /* height: 100%;  */
-
     /* Center and scale the image nicely */
     background-position: center;
     /* background-repeat: repeat; */
@@ -13,34 +11,39 @@ body, html {
     background-repeat: no-repeat;
     /* background-attachment: scroll; */
 }
-
 .jumbotron {
     background-color:transparent !important; 
     text-align: center;
     color: white;
+    text-shadow: 2px 2px black;
 }
-
 .form-control{
     color: black;
 }
-
 .btn-primary {
     color: black;
     background-color: white;
     border-color: white;
     margin: auto;
 }
-
 .selectDestWarning {
     color: red;
 }
-
 p{
     color: black);
+    
    
 }
-
-
+#depdisp{
+    color: white;
+    text-shadow: 2px 2px black;
+    text-align: center;
+}
+#retdisp{
+    color: white;
+    text-shadow: 2px 2px black;
+    text-align: center;
+}
 /* styling for weather graph */
 .axis path, .axis line
         {
@@ -62,5 +65,3 @@ p{
         {
             fill: FireBrick;
         }
-        
-       
