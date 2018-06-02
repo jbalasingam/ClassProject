@@ -1,9 +1,11 @@
 //this script returns the weather data for the cities selected
 $(".selectDestWarning").hide();
-var AbsZero = 273;
+var Constant = 32;
+var fraction = 5/9;
+
 var proxy = 'https://cors-anywhere.herokuapp.com/';
 var APIKEY = "8a93b3dd0526e580ced4a3199d152e6d/"
-//
+
 var YTODEN  = {
             id: "UTODEN",
             city: "Denver",
@@ -27,11 +29,33 @@ var YTORIO  = {
     lattitude : -22.9068,
     longitude : -43.1729,
 }   
+
+var barData = [{
+  'x': 1,
+  'y': 5
+}, {
+  'x': 20,
+  'y': 20
+}, {
+  'x': 40,
+  'y': 10
+}, {
+  'x': 60,
+  'y': 40
+}, {
+  'x': 80,
+  'y': 5
+}, {
+  'x': 100,
+  'y': 60
+}];
+
+
 var dateTimeSeries = [];
 var tempTimeSeries = [];
 var precipTimeSeries = [];
 var humidTimeSeries = [];
-
+var weatherData = [];
 
 var destinations = [YTODEN, YTOSFO, YTORIO];   
 
@@ -45,11 +69,9 @@ $(".submit").on("click", function() {
     //get the id of the current destination selected
     var ID = $('.option:selected').attr("id")
     //clear the arrays
-    tempTimeSeries = [];
-    precipTimeSeries = [];
-    humidTimeSeries = [];
-
-
+    // var tempTimeSeries = [];
+    // var precipTimeSeries = [];
+    // var humidTimeSeries = [];
 
     //Sunil's flight data goes here//
 
@@ -73,27 +95,36 @@ $(".submit").on("click", function() {
             var tomorrow = today.setDate(today.getDate() + i);
             tomorrow = tomorrow/1000;
             
-            console.log(tomorrow);
-
+           
+            
+            
             $.getJSON(proxy+"https://api.darksky.net/forecast/"+ APIKEY  + lattitude + "," + longitude + "," + tomorrow,function(snapshot){
-                // var currentTemp = json.main.temp - AbsZero;
-                tempTimeSeries.push(snapshot.currently.temperature);
+                
+                Celcius = Math.round((snapshot.currently.temperature - Constant)*(fraction));
+                tempTimeSeries.push(Celcius);
                 precipTimeSeries.push(snapshot.currently.precipType);
                 humidTimeSeries.push(snapshot.currently.humidity);
-             });//end get json
+             }).done(() => {
 
-             convert(tomorrow);
-             InitChart();
-        }
+                        // weatherData = dateTimeSeries.map(function(d, i){
+                        // return { 'x' : d , 'y': tempTimeSeries[i]};
+                        // });
+             })
+                
+            //end on submit-on-click function
+            
+        }//end if statement
+
+        if (i>2){
+            InitChart(tempTimeSeries);
+            };
         
-        console.log(tempTimeSeries);
-        console.log(precipTimeSeries);
-        console.log(humidTimeSeries);
-        console.log(dateTimeSeries);
     } else {
         $(".selectDestWarning").show();
     }//end if statement checking for NULL
-});//end on submit-on-click function
+})
+
+
 
 //converting unix timestamp to date
 function convert(snapshot){
@@ -113,91 +144,69 @@ function convert(snapshot){
     var convdataTime = day+'-'+month+'-'+year;
     
     dateTimeSeries.push(convdataTime);
-    
+   
 }
 
+// create a single array using all the time series
 
 //creating a chart with d3.js for the weather data
 
-function InitChart() {
+function InitChart(snapshot) {
 
-  var barData = [{
-    'x': 1,
-    'y': 5
-  }, {
-    'x': 20,
-    'y': 20
-  }, {
-    'x': 40,
-    'y': 10
-  }, {
-    'x': 60,
-    'y': 40
-  }, {
-    'x': 80,
-    'y': 5
-  }, {
-    'x': 100,
-    'y': 60
-  }];
+    //creating the precipitation chart.
+			//Width and height\\
+			var w = 200;
+			var h = 200;
+            var barPadding = 1;
+            
+            var x = [10,20,30,40,50,60];
+    
 
-  var vis = d3.select('#visualisation'),
-    WIDTH = 1000,
-    HEIGHT = 500,
-    MARGINS = {
-      top: 20,
-      right: 20,
-      bottom: 20,
-      left: 50
-    },
-    xRange = d3.scale.ordinal().rangeRoundBands([MARGINS.left, WIDTH - MARGINS.right], 0.1).domain(barData.map(function (d) {
-      return d.x;
-    })),
+            var dataset = x
 
+			//Create SVG element
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
 
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,
-      d3.max(barData, function (d) {
-        return d.y;
-      })
-    ]),
+			svg.selectAll("rect")
+			   .data(dataset)
+			   .enter()
+			   .append("rect")
+			   .attr("x", function(d, i) {
+			   		return i * (w / dataset.length);
+               })
+               
+			   .attr("y", function(d) {
+			   		return h - (d * 4);
+               })
+               
+			   .attr("width", w / dataset.length - barPadding)
+			   .attr("height", function(d) {
+			   		return d * 4;
+               })
+               
+			   .attr("fill", function(d) {
+					return "rgb(0, 0, " + (d * 10) + ")";
+			   });
 
-    xAxis = d3.svg.axis()
-      .scale(xRange)
-      .tickSize(5)
-      .tickSubdivide(true),
+			svg.selectAll("text")
+			   .data(dataset)
+			   .enter()
+			   .append("text")
+			   .text(function(d) {
+			   		return d;
+			   })
+			   .attr("text-anchor", "middle")
+			   .attr("x", function(d, i) {
+			   		return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
+			   })
+			   .attr("y", function(d) {
+			   		return h - (d * 4) + 14;
+			   })
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "11px")
+			   .attr("fill", "white");
+};//end of graphing weather data
 
-    yAxis = d3.svg.axis()
-      .scale(yRange)
-      .tickSize(5)
-      .orient("left")
-      .tickSubdivide(true);
-
-
-  vis.append('svg:g')
-    .attr('class', 'x axis')
-    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
-    .call(xAxis);
-
-  vis.append('svg:g')
-    .attr('class', 'y axis')
-    .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
-    .call(yAxis);
-
-  vis.selectAll('rect')
-    .data(barData)
-    .enter()
-    .append('rect')
-    .attr('x', function (d) {
-      return xRange(d.x);
-    })
-    .attr('y', function (d) {
-      return yRange(d.y);
-    })
-    .attr('width', xRange.rangeBand())
-    .attr('height', function (d) {
-      return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
-    })
-    .attr('fill', 'grey');
-
-}
-  //end of graphing weather data
