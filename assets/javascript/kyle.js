@@ -301,6 +301,7 @@ var departureDate = [];
         });
     });
 
+
     function InitChart(snapshot) {
 
         //creating the precipitation chart.
@@ -361,3 +362,4 @@ var departureDate = [];
     };//end of graphing weather data
     
     
+
