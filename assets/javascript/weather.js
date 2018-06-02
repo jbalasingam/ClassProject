@@ -1,3 +1,19 @@
+// //firebase login authentication added by kyle
+// var config = {
+//   apiKey: "AIzaSyDs0SsPna9FyA2v3VYvR4pBToiOzEStXyw",
+//   authDomain: "class-project-24004.firebaseapp.com",
+//   databaseURL: "https://class-project-24004.firebaseio.com",
+//   projectId: "class-project-24004",
+//   storageBucket: "class-project-24004.appspot.com",
+//   messagingSenderId: "560655777785"
+// };
+// firebase.initializeApp(config);
+
+
+
+
+
+
 //this script returns the weather data for the cities selected
 $(".selectDestWarning").hide();
 var Constant = 32;
@@ -66,6 +82,7 @@ var endDate = parseInt((new Date('2012-08-31').getTime() / 1000).toFixed(0));
 
 
 $(".submit").on("click", function() {
+    return true;
     //get the id of the current destination selected
     var ID = $('.option:selected').attr("id")
     //clear the arrays
