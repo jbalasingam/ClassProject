@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weather</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+</head>
+<body>
+<button id = "getIt" onclick = "gettingJSON()">Get JSON</button>
+<script>
+    function gettingJSON(){
+        document.write("jquery loaded");
+        $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Toronto&APPID=460cf51392394717dab9fa8c5f9d9d0c",function(json){
+            document.write(JSON.stringify(json));
+        });
+    }
+            var cityName = "Denver";
+            var countryID = "US";
+            var startDate = parseInt((new Date('2012-08-10').getTime() / 1000).toFixed(0));
+            var endDate = parseInt((new Date('2012-12-10').getTime() / 1000).toFixed(0));
+            var lattitude = 39.7392;
+            var longitude = -104.9903;
+
+            function gettingJSON(){
+                document.write("jquery loaded");
+                city = cityName;
+                
+                    
+                var AbsZero = 273;
+                var proxy = 'https://cors-anywhere.herokuapp.com/';
+
+                APIKEY = "8a93b3dd0526e580ced4a3199d152e6d/"
+                $.getJSON(proxy+"https://api.darksky.net/forecast/"+ APIKEY  + lattitude + "," + longitude + "," + startDate,function(snapshot){
+                    // var currentTemp = json.main.temp - AbsZero;
+
+
+                    console.log(snapshot.hourly.summary);
+
+                    
+
+                });
+            }
+
+            
+
+
+    </script>
+
+
+<button id = "getIt" onclick = "gettingJSON(cityName)">Get JSON</button>
+</body>
+</html>
