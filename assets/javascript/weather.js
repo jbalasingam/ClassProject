@@ -90,11 +90,172 @@ $(".submit").on("click", function() {
     // var precipTimeSeries = [];
     // var humidTimeSeries = [];
 
+
+});  
     //Sunil's flight data goes here//
 
 
 
+    var departureDate = [];
+    var returnDate = [];
+    
+     $("#0 infoD").on("click", function(){
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=YTO&destination=den&one-way=true";
+          
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })       
+        .then(function(response) {
+          
+            for (var i = 0; i < 10; i++) {
+                var button = $('<button>').attr("id",i).attr("class","departure");
+                button.text(response.results[i].departure_date)
+                $("#depdisp").append(button)
+                console.log(button)
+            };   
+    
+          $(".departure").on("click", function() {
+                var departure_date = this.innerHTML;
+                console.log(departure_date);
+                $("#depdisp").html("Departure " + departure_date);
+                departureDate.push(departure_date)
+                $(".departure").hide();
+                console.log(departureDate)
+            });    
+        });
+    });
+            
+    
+     $("#DENYTO").on("click", function(){
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=DEN&destination=YTO&one-way=true"
+          
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })       
+        .then(function(response) {
+          for (var i = 0; i < 10; i++) {
+                var button = $('<button>').attr("id",i).addClass("return");
+                button.text(response.results[i].departure_date);
+                $("#retdisp").append(button);
+            };
+                $(".return").on("click", function() {
+                    var departure_date = this.innerHTML;
+                    $("#retdisp").html("Return " + departure_date);
+                    returnDate.push(departure_date);  
+                    $(".return").hide();
+                    console.log(returnDate)
+                });    
+                    
+        });
+    });
+    
+    $("#YTOSFO").on("click", function(){
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=YTO&destination=sfo&one-way=true"
+         
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })       
+        .then(function(response) {
+          
+            for (var i = 0; i < 10; i++) {
+                var button = $('<button>').attr("id",i).attr("class","departure");
+                button.text(response.results[i].departure_date)
+                $("#depdisp").append(button)
+            }; 
+    
+          $(".departure").on("click", function() {
+                var departure_date = this.innerHTML;
+                console.log(departure_date);
+                $("#depdisp").html("Departure " + departure_date);
+                departureDate.push(departure_date)
+                $(".departure").hide();
+                console.log(departureDate)
+            });    
+        });
+    });
+         
+    $("#SFOYTO").on("click", function(){
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=SFO&destination=YTO&one-way=true"
+         
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })       
+        .then(function(response) {
+          for (var i = 0; i < 10; i++) {
+                var button = $('<button>').attr("id",i).addClass("return");
+                button.text(response.results[i].departure_date);
+                $("#retdisp").append(button);
+            };
+                $(".return").on("click", function() {
+                    var departure_date = this.innerHTML;
+                    $("#retdisp").html("Return " + departure_date);
+                    returnDate.push(departure_date);  
+                    $(".return").hide();
+                    console.log(returnDate)
+                });    
+                    
+        });
+    });
+    
+     $("#YTORIO").on("click", function(){
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=YTO&destination=RIO&one-way=true"
+           
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })       
+        .then(function(response) {
+          
+            for (var i = 0; i < 10; i++) {
+                var button = $('<button>').attr("id",i).attr("class","departure");
+                button.text(response.results[i].departure_date)
+                $("#depdisp").append(button)
+            }; 
+    
+          $(".departure").on("click", function() {
+                var departure_date = this.innerHTML;
+                console.log(departure_date);
+                $("#depdisp").html("Departure " + departure_date);
+                departureDate.push(departure_date)
+                $(".departure").hide();
+                console.log(departureDate)
+            });    
+        });
+    });
+         
+    
+     $("#RIOYTO").on("click", function(){
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=RIO&destination=YTO&one-way=true"
+          
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })       
+        .then(function(response) {
+          for (var i = 0; i < 10; i++) {
+                var button = $('<button>').attr("id",i).addClass("return");
+                button.text(response.results[i].departure_date);
+                $("#retdisp").append(button);
+            };
+                $(".return").on("click", function() {
+                    var departure_date = this.innerHTML;
+                    $("#retdisp").html("Return " + departure_date);
+                    returnDate.push(departure_date);  
+                    $(".return").hide();
+                    console.log(returnDate)
+                });    
+                    
+        });
+    });
+
+
     //end of Sunil's flight data//
+
+
     //make sure that the user selects a destion before passing on a value to city
     if (ID != "NULL"){
         $(".selectDestWarning").hide();
