@@ -47,6 +47,7 @@ var img2 = document.createElement("img");
 img2.src = "./assets/images/denver.jpg";
 
 var img3 = document.createElement("img");
+
 img3.src = "./assets/images/san.jpg";
 
 
@@ -206,4 +207,5 @@ var departureDate = [];
                     
         });
     });
+
 

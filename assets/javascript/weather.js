@@ -91,8 +91,8 @@ $(".submit").on("click", function() {
     // var humidTimeSeries = [];
 
 
-});  
     //Sunil's flight data goes here//
+
 
 
 
@@ -255,6 +255,9 @@ $(".submit").on("click", function() {
 
     //end of Sunil's flight data//
 
+
+
+    //end of Sunil's flight data//
 
     //make sure that the user selects a destion before passing on a value to city
     if (ID != "NULL"){
