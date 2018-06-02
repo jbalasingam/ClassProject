@@ -58,6 +58,7 @@ var endDate = parseInt((new Date('2012-08-31').getTime() / 1000).toFixed(0));
 
 
 $(".submit").on("click", function() {
+    return true;
     //get the id of the current destination selected
     var ID = $('.option:selected').attr("id")
     //clear the arrays
