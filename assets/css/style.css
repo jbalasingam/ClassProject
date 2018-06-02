@@ -1,0 +1,66 @@
+body, html {
+    /* height: 100%; */
+    margin: 0;
+    background-image: url("../images/695114.jpg");
+
+    /* Full height */
+    /* height: 100%;  */
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    /* background-repeat: repeat; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-attachment: scroll; */
+}
+
+.jumbotron {
+    background-color:transparent !important; 
+    text-align: center;
+    color: white;
+}
+
+.form-control{
+    color: black;
+}
+
+.btn-primary {
+    color: black;
+    background-color: white;
+    border-color: white;
+    margin: auto;
+}
+
+.selectDestWarning {
+    color: red;
+}
+
+p{
+    color: black);
+   
+}
+
+
+/* styling for weather graph */
+.axis path, .axis line
+        {
+            fill: none;
+            stroke: #777;
+            shape-rendering: crispEdges;
+        }
+        
+        .axis text
+        {
+            font-family: 'Arial';
+            font-size: 13px;
+        }
+        .tick
+        {
+            stroke-dasharray: 1, 2;
+        }
+        .bar
+        {
+            fill: FireBrick;
+        }
+        
+       
