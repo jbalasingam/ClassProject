@@ -105,9 +105,9 @@ $("#down_form").on('submit', function(e){
 var departureDate = [];
     var returnDate = [];
     
-     $("#submit1").on("click", function(){
+     $("#submit").on("click", function(){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=YTO&destination=den&one-way=true";
-          
+        
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -116,25 +116,23 @@ var departureDate = [];
           
             for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).attr("class","departure");
-                button.text(response.results[i].departure_date)
+                button.text(response.results[i].departure_date +"  "+ "$" + response.results[i].price)                            
                 $("#depdisp").append(button)
             };   
     
           $(".departure").on("click", function() {
                 var departure_date = this.innerHTML;
-                console.log(departure_date);
                 $("#depdisp").html("Departure " + departure_date);
                 departureDate.push(departure_date)
                 $(".departure").hide();
-                console.log(departureDate)
             });    
         });
     });
             
     
-     $("#submit1").on("click", function(){
+     $("#submit").on("click", function(){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=DEN&destination=YTO&one-way=true"
-          
+        
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -142,7 +140,7 @@ var departureDate = [];
         .then(function(response) {
           for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).addClass("return");
-                button.text(response.results[i].departure_date);
+                button.text(response.results[i].departure_date +"  "+ "$" + response.results[i].price)  
                 $("#retdisp").append(button);
             };
                 $(".return").on("click", function() {
@@ -157,9 +155,9 @@ var departureDate = [];
         });
     });
     
-    $("#submit2").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=YTO&destination=sfo&one-way=true"
-         
+    $("#submit").on("click", function(){
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=YTO&destination=SFO&one-way=true"
+        console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -168,8 +166,9 @@ var departureDate = [];
           
             for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).attr("class","departure");
-                button.text(response.results[i].departure_date)
+                button.text(response.results[i].departure_date) 
                 $("#depdisp").append(button)
+                
             }; 
     
           $(".departure").on("click", function() {
@@ -183,7 +182,7 @@ var departureDate = [];
         });
     });
          
-    $("#submit2").on("click", function(){
+    $("#submit").on("click", function(){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=SFO&destination=YTO&one-way=true"
          
         $.ajax({
@@ -193,7 +192,7 @@ var departureDate = [];
         .then(function(response) {
           for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).addClass("return");
-                button.text(response.results[i].departure_date);
+                button.text(response.results[i].departure_date +"  "+ "$" + response.results[i].price)  
                 $("#retdisp").append(button);
             };
                 $(".return").on("click", function() {
@@ -208,7 +207,7 @@ var departureDate = [];
         });
     });
     
-     $("#submit3").on("click", function(){
+     $("#submit").on("click", function(){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=YTO&destination=RIO&one-way=true"
            
         $.ajax({
@@ -219,7 +218,7 @@ var departureDate = [];
           
             for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).attr("class","departure");
-                button.text(response.results[i].departure_date)
+                button.text(response.results[i].departure_date +"  "+ "$" + response.results[i].price)  
                 $("#depdisp").append(button)
             }; 
     
@@ -235,7 +234,7 @@ var departureDate = [];
     });
          
     
-     $("#submit3").on("click", function(){
+     $("#submit").on("click", function(){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=RIO&destination=YTO&one-way=true"
           
         $.ajax({
@@ -245,7 +244,7 @@ var departureDate = [];
         .then(function(response) {
           for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).addClass("return");
-                button.text(response.results[i].departure_date);
+                button.text(response.results[i].departure_date +"  "+ "$" + response.results[i].price)  
                 $("#retdisp").append(button);
             };
                 $(".return").on("click", function() {
