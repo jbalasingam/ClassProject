@@ -53,20 +53,33 @@
                                    
                 </div>
                 
+
                 <div class="col-3">
                     <div id="depdisp">Departure </div>
                     <br>
                     <br>
                     
                     
+
+                <div class="col-6">
+                    <div class="tempTitle">Temperature </div>
+                    <svg class="temp"></svg>
+                    <div class="tempTitle">Humidity</div>
+                    <svg class="humid"></svg>
+                    <div class="tempTitle">Precipitation </div>
+                    <svg class="precip"></svg>
+
                    
+                    
                 </div>
+
                 <div class="col-3">
                     <div id="retdisp">Return </div>
                     <br>
                     <br>
                     
                 </div>
+
                 <div class="col-3" id="divdiv"> 
                     <p class="output"></p>
                     
@@ -90,11 +103,24 @@
     </div>
     
     
+
    
+
+    <div class="form-group">
+        <label >Select Departure Date</label>
+        <input type="date" name="bday" max="3000-12-31" 
+               min="1000-01-01" class="form-control">
+       </div>
+       <div class="form-group">
+        <label >Select Return Date</label>
+        <input type="date" name="bday" min="1000-01-01"
+               max="3000-12-31" class="form-control">
+       </div>
+
     
     
-    <svg id="visualisation" width="1000" height="500"></svg>
     <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
 
 
 
