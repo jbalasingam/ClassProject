@@ -270,9 +270,6 @@ function weather(){
     // var diffDays = b.diff(a, 'days');
     var diffDays = 15;
 
-
-    
-    
             if (select != "NULL"){
                 $(".selectDestWarning").hide();
                 var city = destinations[select].city;
@@ -286,23 +283,20 @@ function weather(){
     
                     var tomorrow = today.setDate(today.getDate() + i);
                     tomorrow = tomorrow/1000;
-                    convert(tomorrow);
-
+                    
                     $.getJSON(proxy+"https://api.darksky.net/forecast/"+ APIKEY  + lattitude + "," + longitude + "," + tomorrow,function(snapshot){
                         Celcius = Math.round((snapshot.currently.temperature - Constant)*(fraction));
                         tempTimeSeries.push(Celcius);
                         precipTimeSeries.push(Math.round(snapshot.currently.cloudCover*100));
                         humidTimeSeries.push(Math.round(snapshot.currently.humidity*100));
-                    }).done(() => {
-                        
-                    });
+                    })
                 }//end for loop
             } else {
                 $(".selectDestWarning").show();
             }//end if statement checking for NULL
-            setTimeout(temp,300);
-            setTimeout(precip,300);
-            setTimeout(humid,300);
+            setTimeout(temp,1000);
+            setTimeout(precip,1000);
+            setTimeout(humid,1000);
             
     };
 
@@ -331,7 +325,7 @@ function temp(x) {
                 })
                 
                 .attr("y", function(d) {
-                        return h - (d * 10);
+                        return h - (d * 5);
                 })
                 
                 .attr("width", w / dataset.length - barPadding)
@@ -485,24 +479,4 @@ function humid(x) {
                 .attr("fill", "white");
 
 };//end of graphing weather data
-//converting unix timestamp to date
-function convert(snapshot){
-    // Unixtimestamp
-    var unixtimestamp = snapshot;
-    // Months array
-    var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    // Convert timestamp to milliseconds
-    var date = new Date(unixtimestamp*1000);
-    // Year
-    var year = date.getFullYear();
-    // Month
-    var month = months_arr[date.getMonth()];
-    // Day
-    var day = date.getDate();
-    // Display date time in MM-dd-yyyy h:m:s format
-    var convdataTime = day+'-'+month+'-'+year;
-    
-    dateTimeSeries.push(convdataTime);
-   
-}
 
