@@ -11,6 +11,7 @@ var img3 = document.createElement("img");
 img3.src = "./assets/images/san.jpg";
 
 $(".selectDestWarning").hide();
+$(".tempTitle").hide();
 var Constant = 32;
 var fraction = 5/9;
 
@@ -294,10 +295,10 @@ function weather(){
             } else {
                 $(".selectDestWarning").show();
             }//end if statement checking for NULL
-            setTimeout(temp,1501);
-            setTimeout(precip,1501);
-            setTimeout(humid,1501);
-            
+            setTimeout(temp,300);
+            setTimeout(precip,300);
+            setTimeout(humid,300);
+            $(".tempTitle").show();
     };
 
 function temp(x) {
@@ -305,7 +306,7 @@ function temp(x) {
     //creating the precipitation chart.
             //Width and height\\
             var w = 300;
-            var h = 150;
+            var h = 100;
             var barPadding = 1;
     
             var dataset = tempTimeSeries
