@@ -150,7 +150,7 @@ var departureDate = [];
     var returnDate = [];
     
      $("#submit1").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=YTO&destination=den&one-way=true";
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=YTO&destination=den&one-way=true";
           
         $.ajax({
             url: queryURL,
@@ -177,7 +177,7 @@ var departureDate = [];
             
     
      $("#submit1").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=DEN&destination=YTO&one-way=true"
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=DEN&destination=YTO&one-way=true"
           
         $.ajax({
             url: queryURL,
@@ -201,7 +201,7 @@ var departureDate = [];
     });
     
     $("#submit2").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=YTO&destination=sfo&one-way=true"
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=YTO&destination=sfo&one-way=true"
          
         $.ajax({
             url: queryURL,
@@ -227,7 +227,7 @@ var departureDate = [];
     });
          
     $("#submit2").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=SFO&destination=YTO&one-way=true"
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=SFO&destination=YTO&one-way=true"
          
         $.ajax({
             url: queryURL,
@@ -251,7 +251,7 @@ var departureDate = [];
     });
     
      $("#submit3").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=YTO&destination=RIO&one-way=true"
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=YTO&destination=RIO&one-way=true"
            
         $.ajax({
             url: queryURL,
@@ -278,7 +278,7 @@ var departureDate = [];
          
     
      $("#submit3").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=xk3REPS1QyCZ7ASNWU5CIB2GmRm0DYlF&origin=RIO&destination=YTO&one-way=true"
+        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=RIO&destination=YTO&one-way=true"
           
         $.ajax({
             url: queryURL,
