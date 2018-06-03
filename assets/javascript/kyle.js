@@ -260,6 +260,7 @@ var departureDate = [];
         });
     });
 
+
 function weather(){        
         //get the id of the current destination selected
     console.log("function weather");
@@ -268,6 +269,7 @@ function weather(){
     var b = moment(returnDate,'YYYY-M-D');
     // var diffDays = b.diff(a, 'days');
     var diffDays = 15;
+
 
     
     
@@ -503,3 +505,4 @@ function convert(snapshot){
     dateTimeSeries.push(convdataTime);
    
 }
+
