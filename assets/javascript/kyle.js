@@ -386,5 +386,3 @@ function convert(snapshot){
     dateTimeSeries.push(convdataTime);
    
 }
-
-
