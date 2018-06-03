@@ -106,11 +106,7 @@ var departureDate = [];
     var returnDate = [];
     
      $("#submit1").on("click", function(){
-<<<<<<< HEAD
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=VHzZ53TQXAJZvU3Zj8rWIKHlRh3i2Bd2&origin=YTO&destination=den&one-way=true";
-=======
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=YTO&destination=den&one-way=true";
->>>>>>> 3e042572ab18f325b823b37b360651c189a58229
           
         $.ajax({
             url: queryURL,
