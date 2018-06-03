@@ -293,7 +293,7 @@ function weather(){
                         humidTimeSeries.push(snapshot.currently.humidity);
                     }).done(() => {
 
-                        if(i=diffDays){
+                        if(i==diffDays-1){
                         temp(tempTimeSeries);
                         } else{
                             console.log("not done");
