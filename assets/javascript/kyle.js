@@ -266,7 +266,8 @@ function weather(){
 
     var a = moment(departureDate,'YYYY-M-D');
     var b = moment(returnDate,'YYYY-M-D');
-    var diffDays = b.diff(a, 'days');
+    // var diffDays = b.diff(a, 'days');
+    var diffDays = 15;
 
     
     
@@ -286,41 +287,36 @@ function weather(){
                     convert(tomorrow);
 
                     $.getJSON(proxy+"https://api.darksky.net/forecast/"+ APIKEY  + lattitude + "," + longitude + "," + tomorrow,function(snapshot){
-                        
                         Celcius = Math.round((snapshot.currently.temperature - Constant)*(fraction));
                         tempTimeSeries.push(Celcius);
-                        precipTimeSeries.push(snapshot.currently.precipType);
-                        humidTimeSeries.push(snapshot.currently.humidity);
+                        precipTimeSeries.push(Math.round(snapshot.currently.cloudCover*100));
+                        humidTimeSeries.push(Math.round(snapshot.currently.humidity*100));
                     }).done(() => {
-
-                        if(i==diffDays-1){
-                        temp(tempTimeSeries);
-                        } else{
-                            console.log("not done");
-                        }
+                        
                     });
                 }//end for loop
             } else {
                 $(".selectDestWarning").show();
             }//end if statement checking for NULL
-        
+            setTimeout(temp,100);
+            setTimeout(precip,100);
+            setTimeout(humid,100);
+            
     };
 
 function temp(x) {
     console.log("function temp");
     //creating the precipitation chart.
             //Width and height\\
-            var w = 200;
-            var h = 250;
+            var w = 300;
+            var h = 150;
             var barPadding = 1;
-        
-            console.log(x);
-
-            var dataset = x
+    
+            var dataset = tempTimeSeries
 
             //Create SVG element
-            var svg = d3.select("body")
-                        .append("svg")
+            var svg = d3.select(".temp")
+                        // .append("svg")
                         .attr("width", w)
                         .attr("height", h)
             
@@ -333,12 +329,12 @@ function temp(x) {
                 })
                 
                 .attr("y", function(d) {
-                        return h - (d * 1);
+                        return h - (d * 10);
                 })
                 
                 .attr("width", w / dataset.length - barPadding)
                 .attr("height", function(d) {
-                        return d * 10;
+                        return d * 100;
                 })
                 
                 .attr("fill", function(d) {
@@ -365,7 +361,128 @@ function temp(x) {
                 .attr("fill", "white");
 
 };//end of graphing weather data
-    
+
+function precip(x) {
+    //creating the precipitation chart.
+            //Width and height\\
+            var w = 300;
+            var h = 100;
+            var barPadding = 1;
+        
+            // x = [10,20,3,25,1]
+
+            console.log(x);
+
+            var dataset = precipTimeSeries
+
+            //Create SVG element
+            var svg = d3.select(".precip")
+                        // .append("svg")
+                        .attr("width", w)
+                        .attr("height", h)
+            
+            svg.selectAll("rect")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                .attr("x", function(d, i) {
+                        return i * (w / dataset.length);
+                })
+                
+                .attr("y", function(d) {
+                        return h - (d * 1);
+                })
+                
+                .attr("width", w / dataset.length - barPadding)
+                .attr("height", function(d) {
+                        return d * 1;
+                })
+                
+                .attr("fill", function(d) {
+                    return "rgb(7,39,255)";
+                    
+                });
+
+            svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append("text")
+                .text(function(d) {
+                        return d;
+                })
+                .attr("text-anchor", "middle")
+                .attr("x", function(d, i) {
+                        return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
+                })
+                .attr("y", function(d) {
+                        return h - (d * 1);
+                })
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "11px")
+                .attr("fill", "white");
+
+};//end of graphing weather data
+
+function humid(x) {
+    //creating the precipitation chart.
+            //Width and height\\
+            var w = 300;
+            var h = 100;
+            var barPadding = 1;
+        
+            // x = [10,20,3,25,1]
+
+            console.log(x);
+
+            var dataset = humidTimeSeries
+
+            //Create SVG element
+            var svg = d3.select(".humid")
+                        // .append("svg")
+                        .attr("width", w)
+                        .attr("height", h)
+            
+            svg.selectAll("rect")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                .attr("x", function(d, i) {
+                        return i * (w / dataset.length);
+                })
+                
+                .attr("y", function(d) {
+                        return h - (d * 1);
+                })
+                
+                .attr("width", w / dataset.length - barPadding)
+                .attr("height", function(d) {
+                        return d * 1;
+                })
+                
+                .attr("fill", function(d) {
+                    return "rgb(0,0,255)";
+                    
+                });
+
+            svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append("text")
+                .text(function(d) {
+                        return d;
+                })
+                .attr("text-anchor", "middle")
+                .attr("x", function(d, i) {
+                        return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
+                })
+                .attr("y", function(d) {
+                        return h - (d * 1);
+                })
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "11px")
+                .attr("fill", "white");
+
+};//end of graphing weather data
 //converting unix timestamp to date
 function convert(snapshot){
     // Unixtimestamp
