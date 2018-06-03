@@ -294,9 +294,9 @@ function weather(){
             } else {
                 $(".selectDestWarning").show();
             }//end if statement checking for NULL
-            setTimeout(temp,1000);
-            setTimeout(precip,1000);
-            setTimeout(humid,1000);
+            setTimeout(temp,1500);
+            setTimeout(precip,1500);
+            setTimeout(humid,1500);
             
     };
 
@@ -479,4 +479,3 @@ function humid(x) {
                 .attr("fill", "white");
 
 };//end of graphing weather data
-
