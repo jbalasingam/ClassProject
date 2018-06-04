@@ -93,7 +93,8 @@ $("#down_form").on('submit', function(e){
    if(select == 0){
     $(".output").html(Denver);
     $("#divdiv").css("background-color", "white");
-    $("body").css('background-image','url('+img2.src+')');
+    $("body").css('background-image','url('+img2.src+')').css('background-repeat','no-repeat').css('background-attachment','fixed').css('background-position','center').css('background-size','cover');
+    // this.style.backgroundImage="url(../images/img2.src)";
    } else if(select == 1){
        $(".output").html(Sanfran)
        $("#divdiv").css("background-color", "white");
