@@ -92,6 +92,7 @@ $("#down_form").on('submit', function(e){
     select = $('.form-control option:checked').val();
     
    if(select == 0){
+    $(".selectDestWarning").hide();
     $(".output").html(Denver);
     $("#divdiv").css("background-color", "white");
     $("body").css('background-image','url('+img2.src+')').css('background-repeat','no-repeat').css('background-attachment','fixed').css('background-position','center').css('background-size','cover');
@@ -99,18 +100,27 @@ $("#down_form").on('submit', function(e){
     denverReturn(select);
 
    } else if(select == 1){
+    $(".selectDestWarning").hide();
        $(".output").html(Sanfran)
        $("#divdiv").css("background-color", "white");
        $("body").css('background-image', 'url('+img3.src+')');
        sanfranDepart(select);
        sanfranReturn(select);
+       
    }
    else if(select == 2){
+    $(".selectDestWarning").hide();
        $(".output").html(Rio)
        $("#divdiv").css("background-color", "white");
        $("body").css('background-image','url('+img1.src+')');
        rioDepart(select);
        rioReturn(select);
+       
+   } else {
+        $(".selectDestWarning").show();
+        $("#depdisp").hide();
+$("#retdisp").hide();
+
    }
 
 
@@ -139,8 +149,8 @@ $("#down_form").on('submit', function(e){
             };   
     
           $(".departure").on("click", function() {
-            var departure_date = this.innerHTML
-            departure_date = departure_date.substring(0, 10);
+                var departure_date = this.innerHTML
+                departure_date = departure_date.substring(0, 10);
                 console.log(departure_date);
                 $("#depdisp").html("Departure " + departure_date);
                 departureDate.push(departure_date)
