@@ -134,12 +134,13 @@ $("#down_form").on('submit', function(e){
           
             for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).attr("class","departure");
-                button.text(response.results[i].departure_date)
+                button.text(response.results[i].departure_date +" $"+response.results[i].price)
                 $("#depdisp").append(button)
             };   
     
           $(".departure").on("click", function() {
-                var departure_date = this.innerHTML;
+            var departure_date = this.innerHTML
+            departure_date = departure_date.substring(0, 10);
                 console.log(departure_date);
                 $("#depdisp").html("Departure " + departure_date);
                 departureDate.push(departure_date)
@@ -160,11 +161,12 @@ $("#down_form").on('submit', function(e){
         .then(function(response) {
           for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).addClass("return");
-                button.text(response.results[i].departure_date);
+                button.text(response.results[i].departure_date+" $"+response.results[i].price);
                 $("#retdisp").append(button);
             };
                 $(".return").on("click", function() {
-                    var departure_date = this.innerHTML;
+                    var departure_date = this.innerHTML
+                    departure_date = departure_date.substring(0, 10);
                     $("#retdisp").html("Return " + departure_date);
                     returnDate.push(departure_date);  
                     $(".return").hide();
@@ -186,12 +188,13 @@ $("#down_form").on('submit', function(e){
           
             for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).attr("class","departure");
-                button.text(response.results[i].departure_date)
+                button.text(response.results[i].departure_date+" $"+response.results[i].price)
                 $("#depdisp").append(button)
             }; 
     
           $(".departure").on("click", function() {
-                var departure_date = this.innerHTML;
+                var departure_date = this.innerHTML
+                departure_date = departure_date.substring(0, 10);
                 console.log(departure_date);
                 $("#depdisp").html("Departure " + departure_date);
                 departureDate.push(departure_date)
@@ -211,11 +214,12 @@ $("#down_form").on('submit', function(e){
         .then(function(response) {
           for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).addClass("return");
-                button.text(response.results[i].departure_date);
+                button.text(response.results[i].departure_date+" $"+response.results[i].price);
                 $("#retdisp").append(button);
             };
                 $(".return").on("click", function() {
-                    var departure_date = this.innerHTML;
+                    var departure_date = this.innerHTML
+                    departure_date = departure_date.substring(0, 10);
                     $("#retdisp").html("Return " + departure_date);
                     returnDate.push(departure_date);  
                     $(".return").hide();
@@ -237,12 +241,13 @@ $("#down_form").on('submit', function(e){
           
             for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).attr("class","departure");
-                button.text(response.results[i].departure_date)
+                button.text(response.results[i].departure_date+" $"+response.results[i].price)
                 $("#depdisp").append(button)
             }; 
     
           $(".departure").on("click", function() {
-                var departure_date = this.innerHTML;
+            var departure_date = this.innerHTML
+            departure_date = departure_date.substring(0, 10);
                 console.log(departure_date);
                 $("#depdisp").html("Departure " + departure_date);
                 departureDate.push(departure_date)
@@ -263,11 +268,12 @@ $("#down_form").on('submit', function(e){
         .then(function(response) {
           for (var i = 0; i < 10; i++) {
                 var button = $('<button>').attr("id",i).addClass("return");
-                button.text(response.results[i].departure_date);
+                button.text(response.results[i].departure_date+" $"+response.results[i].price);
                 $("#retdisp").append(button);
             };
                 $(".return").on("click", function() {
-                    var departure_date = this.innerHTML;
+                    var departure_date = this.innerHTML
+                    departure_date = departure_date.substring(0, 10);
                     $("#retdisp").html("Return " + departure_date);
                     returnDate.push(departure_date);  
                     $(".return").hide();
