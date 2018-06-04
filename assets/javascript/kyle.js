@@ -305,9 +305,9 @@ function weather(){
             } else {
                 $(".selectDestWarning").show();
             }//end if statement checking for NULL
-            setTimeout(temp,300);
-            setTimeout(precip,300);
-            setTimeout(humid,300);
+            setTimeout(temp,301);
+            setTimeout(precip,301);
+            setTimeout(humid,301);
             $(".tempTitle").show();
     };
 
