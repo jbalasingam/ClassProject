@@ -100,178 +100,75 @@ $("#down_form").on('submit', function(e){
        $("body").css('background-image', 'url('+img3.src+')');
    }
    else if(select == 2){
-       $(".output").html(Rio)
-       $("#divdiv").css("background-color", "white");
-       $("body").css('background-image','url('+img1.src+')');
-   }
+    $(".output").html(Rio)
+    $("#divdiv").css("background-color", "white");
+    $("body").css('background-image','url('+img1.src+')');
+}
 
 
 //Jude's js code
-
-});//end of Jude's JS code
+//end of Jude's JS code
 
 // Sunil's airplane code //
 
 var departureDate = [];
-    var returnDate = [];
-    
-     $("#submit1").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=YTO&destination=den&one-way=true";
-          
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })       
-        .then(function(response) {
-          
-            for (var i = 0; i < 10; i++) {
-                var button = $('<button>').attr("id",i).attr("class","departure");
-                button.text(response.results[i].departure_date)
-                $("#depdisp").append(button)
-            };   
-    
-          $(".departure").on("click", function() {
-                var departure_date = this.innerHTML;
-                console.log(departure_date);
-                $("#depdisp").html("Departure " + departure_date);
-                departureDate.push(departure_date)
-                $(".departure").hide();
-                console.log(departureDate)
-            });    
-        });
-    });
-            
-    
-     $("#submit1").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=DEN&destination=YTO&one-way=true"
-          
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })       
-        .then(function(response) {
-          for (var i = 0; i < 10; i++) {
-                var button = $('<button>').attr("id",i).addClass("return");
-                button.text(response.results[i].departure_date);
-                $("#retdisp").append(button);
-            };
-                $(".return").on("click", function() {
-                    var departure_date = this.innerHTML;
-                    $("#retdisp").html("Return " + departure_date);
-                    returnDate.push(departure_date);  
-                    $(".return").hide();
-                    console.log(returnDate)
-                    weather(returnDate);
-                });    
-                    
-        });
-    });
-    
-    $("#submit2").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=YTO&destination=sfo&one-way=true"
-         
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })       
-        .then(function(response) {
-          
-            for (var i = 0; i < 10; i++) {
-                var button = $('<button>').attr("id",i).attr("class","departure");
-                button.text(response.results[i].departure_date)
-                $("#depdisp").append(button)
-            }; 
-    
-          $(".departure").on("click", function() {
-                var departure_date = this.innerHTML;
-                console.log(departure_date);
-                $("#depdisp").html("Departure " + departure_date);
-                departureDate.push(departure_date)
-                $(".departure").hide();
-                console.log(departureDate)
-            });    
-        });
-    });
-         
-    $("#submit2").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=SFO&destination=YTO&one-way=true"
-         
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })       
-        .then(function(response) {
-          for (var i = 0; i < 10; i++) {
-                var button = $('<button>').attr("id",i).addClass("return");
-                button.text(response.results[i].departure_date);
-                $("#retdisp").append(button);
-            };
-                $(".return").on("click", function() {
-                    var departure_date = this.innerHTML;
-                    $("#retdisp").html("Return " + departure_date);
-                    returnDate.push(departure_date);  
-                    $(".return").hide();
-                    console.log(returnDate)
-                    weather(returnDate);
-                });    
-                    
-        });
-    });
-    
-     $("#submit3").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=YTO&destination=RIO&one-way=true"
-           
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })       
-        .then(function(response) {
-          
-            for (var i = 0; i < 10; i++) {
-                var button = $('<button>').attr("id",i).attr("class","departure");
-                button.text(response.results[i].departure_date)
-                $("#depdisp").append(button)
-            }; 
-    
-          $(".departure").on("click", function() {
-                var departure_date = this.innerHTML;
-                console.log(departure_date);
-                $("#depdisp").html("Departure " + departure_date);
-                departureDate.push(departure_date)
-                $(".departure").hide();
-                console.log(departureDate)
-            });    
-        });
-    });
-         
-    
-     $("#submit3").on("click", function(){
-        var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=RIO&destination=YTO&one-way=true"
-          
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })       
-        .then(function(response) {
-          for (var i = 0; i < 10; i++) {
-                var button = $('<button>').attr("id",i).addClass("return");
-                button.text(response.results[i].departure_date);
-                $("#retdisp").append(button);
-            };
-                $(".return").on("click", function() {
-                    var departure_date = this.innerHTML;
-                    $("#retdisp").html("Return " + departure_date);
-                    returnDate.push(departure_date);  
-                    $(".return").hide();
-                    console.log(returnDate)
-                    weather(returnDate);
-                });    
-                    
-        });
-    });
+ var returnDate = [];
+ 
+  $("#submit").on("click", function(){
+      
+     var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=YTO&destination=den&one-way=true";
+       
+     $.ajax({
+         url: queryURL,
+         method: "GET"
+     })       
+     .then(function(response) {
+       
+         for (var i = 0; i < 10; i++) {
+             var button = $('<button>').attr("id",i).attr("class","departure");
+             button.text(response.results[i].departure_date + " " + "$" + response.results[i].price)
+             $("#depdisp").append(button)
+         };   
+ 
+       $(".departure").on("click", function() {
+             var departure_date = this.innerHTML;
+             console.log(departure_date);
+             $("#depdisp").html("Departure " + departure_date);
+             departureDate.push(departure_date)
+             $(".departure").hide();
+             console.log(departureDate)
+         });    
+     });
+ });
+     
+ 
+  $("#submit").on("click", function(){
+     var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=DEN&destination=YTO&one-way=true"
+       
+     $.ajax({
+         url: queryURL,
+         method: "GET"
+     })       
+     .then(function(response) {
+       for (var i = 0; i < 10; i++) {
+             var button = $('<button>').attr("id",i).addClass("return");
+             button.text(response.results[i].departure_date + " " + "$" + response.results[i].price)
+             $("#retdisp").append(button);
+         };
+             $(".return").on("click", function() {
+                 var departure_date = this.innerHTML;
+                 $("#retdisp").html("Return " + departure_date);
+                 returnDate.push(departure_date);  
+                 $(".return").hide();
+                 console.log(returnDate)
+                 weather(returnDate);
+             });    
+                 
+     });
+ });   
+});
 
-
-function weather(){        
+function weather(){ 
         //get the id of the current destination selected
     console.log("function weather");
 
