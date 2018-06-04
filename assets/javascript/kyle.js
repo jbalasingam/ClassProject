@@ -73,7 +73,8 @@ var tempTimeSeries = [];
 var precipTimeSeries = [];
 var humidTimeSeries = [];
 var weatherData = [];
-
+var departureDate = [];
+var returnDate = [];
 var destinations = [YTODEN, YTOSFO, YTORIO];   
 
 
@@ -94,16 +95,22 @@ $("#down_form").on('submit', function(e){
     $(".output").html(Denver);
     $("#divdiv").css("background-color", "white");
     $("body").css('background-image','url('+img2.src+')').css('background-repeat','no-repeat').css('background-attachment','fixed').css('background-position','center').css('background-size','cover');
-    // this.style.backgroundImage="url(../images/img2.src)";
+    denverDepart(select);
+    denverReturn(select);
+
    } else if(select == 1){
        $(".output").html(Sanfran)
        $("#divdiv").css("background-color", "white");
        $("body").css('background-image', 'url('+img3.src+')');
+       sanfranDepart(select);
+       sanfranReturn(select);
    }
    else if(select == 2){
        $(".output").html(Rio)
        $("#divdiv").css("background-color", "white");
        $("body").css('background-image','url('+img1.src+')');
+       rioDepart(select);
+       rioReturn(select);
    }
 
 
@@ -113,12 +120,12 @@ $("#down_form").on('submit', function(e){
 
 // Sunil's airplane code //
 
-var departureDate = [];
-    var returnDate = [];
+
     
-     $("#submit1").on("click", function(){
+     function denverDepart(x){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=YTO&destination=den&one-way=true";
           
+        console.log(select);
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -140,10 +147,10 @@ var departureDate = [];
                 console.log(departureDate)
             });    
         });
-    });
+    };
             
     
-     $("#submit1").on("click", function(){
+     function denverReturn(x){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=DEN&destination=YTO&one-way=true"
           
         $.ajax({
@@ -166,9 +173,9 @@ var departureDate = [];
                 });    
                     
         });
-    });
+    };
     
-    $("#submit2").on("click", function(){
+    function sanfranDepart(x){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=YTO&destination=sfo&one-way=true"
          
         $.ajax({
@@ -192,9 +199,9 @@ var departureDate = [];
                 console.log(departureDate)
             });    
         });
-    });
+    };
          
-    $("#submit2").on("click", function(){
+    function sanfranReturn(x){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=SFO&destination=YTO&one-way=true"
          
         $.ajax({
@@ -217,9 +224,9 @@ var departureDate = [];
                 });    
                     
         });
-    });
+    };
     
-     $("#submit3").on("click", function(){
+     function rioDepart(x){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=YTO&destination=RIO&one-way=true"
            
         $.ajax({
@@ -243,10 +250,10 @@ var departureDate = [];
                 console.log(departureDate)
             });    
         });
-    });
+    };
          
     
-     $("#submit3").on("click", function(){
+    function rioReturn(x){
         var queryURL = "https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=mRIoU7QG9mM6rewSvr88b6nk6gSzGZoo&origin=RIO&destination=YTO&one-way=true"
           
         $.ajax({
@@ -269,7 +276,7 @@ var departureDate = [];
                 });    
                     
         });
-    });
+    };
 
 
 function weather(){        
@@ -305,9 +312,9 @@ function weather(){
             } else {
                 $(".selectDestWarning").show();
             }//end if statement checking for NULL
-            setTimeout(temp,301);
-            setTimeout(precip,301);
-            setTimeout(humid,301);
+            setTimeout(temp,501);
+            setTimeout(precip,501);
+            setTimeout(humid,501);
             $(".tempTitle").show();
     };
 
@@ -316,7 +323,7 @@ function temp(x) {
     //creating the precipitation chart.
             //Width and height\\
             var w = 300;
-            var h = 100;
+            var h = 150;
             var barPadding = 1;
     
             var dataset = tempTimeSeries
@@ -373,7 +380,7 @@ function precip(x) {
     //creating the precipitation chart.
             //Width and height\\
             var w = 300;
-            var h = 100;
+            var h = 150;
             var barPadding = 1;
         
             // x = [10,20,3,25,1]
@@ -434,7 +441,7 @@ function humid(x) {
     //creating the precipitation chart.
             //Width and height\\
             var w = 300;
-            var h = 100;
+            var h = 150;
             var barPadding = 1;
         
             // x = [10,20,3,25,1]
