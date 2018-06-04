@@ -283,8 +283,8 @@ function weather(){
         //get the id of the current destination selected
     console.log("function weather");
 
-    var a = moment(departureDate,'YYYY-M-D');
-    var b = moment(returnDate,'YYYY-M-D');
+    // var a = moment(departureDate,'YYYY-M-D');
+    // var b = moment(returnDate,'YYYY-M-D');
     // var diffDays = b.diff(a, 'days');
     var diffDays = 15;
 
@@ -301,6 +301,7 @@ function weather(){
     
                     var tomorrow = today.setDate(today.getDate() + i);
                     tomorrow = tomorrow/1000;
+                    console.log(tomorrow);
                     
                     $.getJSON(proxy+"https://api.darksky.net/forecast/"+ APIKEY  + lattitude + "," + longitude + "," + tomorrow,function(snapshot){
                         Celcius = Math.round((snapshot.currently.temperature - Constant)*(fraction));
@@ -308,13 +309,15 @@ function weather(){
                         precipTimeSeries.push(Math.round(snapshot.currently.cloudCover*100));
                         humidTimeSeries.push(Math.round(snapshot.currently.humidity*100));
                     })
+                    setTimeout(go, 1500);
                 }//end for loop
+               
             } else {
                 $(".selectDestWarning").show();
             }//end if statement checking for NULL
-            setTimeout(temp,502);
-            setTimeout(precip,501);
-            setTimeout(humid,501);
+            setTimeout(temp,802);
+            setTimeout(precip,801);
+            setTimeout(humid,801);
             $(".tempTitle").show();
     };
 
@@ -497,3 +500,6 @@ function humid(x) {
                 .attr("fill", "white");
 
 };//end of graphing weather data
+function go(){
+    console.log("hello");
+};
